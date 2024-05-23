@@ -12,13 +12,13 @@ async function consumeAuthEmailMessages(channel: Channel): Promise<void> {
     if (!channel) {
       channel = await createConnection() as Channel;
     }
-    const exchangeName = 'jobber-email-notification';
+    const exchangeName = 'adwuma-email-notification';
     const routingKey = 'auth-email';
     const queueName = 'auth-email-queue';
     await channel.assertExchange(exchangeName, 'direct');
-    const jobberQueue = await channel.assertQueue(queueName, { durable: true, autoDelete: false });
-    await channel.bindQueue(jobberQueue.queue, exchangeName, routingKey);
-    channel.consume(jobberQueue.queue, async (msg: ConsumeMessage | null) => {
+    const adwumaQueue = await channel.assertQueue(queueName, { durable: true, autoDelete: false });
+    await channel.bindQueue(adwumaQueue.queue, exchangeName, routingKey);
+    channel.consume(adwumaQueue.queue, async (msg: ConsumeMessage | null) => {
       const { receiverEmail, username, verifyLink, resetLink, template, otp } = JSON.parse(msg!.content.toString());
       const locals: IEmailLocals = {
         appLink: `${config.CLIENT_URL}`,
@@ -41,13 +41,13 @@ async function consumeOrderEmailMessages(channel: Channel): Promise<void> {
     if (!channel) {
       channel = await createConnection() as Channel;
     }
-    const exchangeName = 'jobber-order-notification';
+    const exchangeName = 'adwuma-order-notification';
     const routingKey = 'order-email';
     const queueName = 'order-email-queue';
     await channel.assertExchange(exchangeName, 'direct');
-    const jobberQueue = await channel.assertQueue(queueName, { durable: true, autoDelete: false });
-    await channel.bindQueue(jobberQueue.queue, exchangeName, routingKey);
-    channel.consume(jobberQueue.queue, async (msg: ConsumeMessage | null) => {
+    const adwumaQueue = await channel.assertQueue(queueName, { durable: true, autoDelete: false });
+    await channel.bindQueue(adwumaQueue.queue, exchangeName, routingKey);
+    channel.consume(adwumaQueue.queue, async (msg: ConsumeMessage | null) => {
       const {
         receiverEmail,
         username,

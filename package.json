@@ -1,5 +1,5 @@
 {
-  "name": "2-notification-service",
+  "name": "adwuma-notification-service",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dt4real/adwuma-common": "^0.0.3",
+    "@dt4real/adwuma-common": "^0.0.5",
     "@elastic/elasticsearch": "^8.10.0",
     "amqplib": "^0.10.3",
     "dotenv": "^16.3.1",
